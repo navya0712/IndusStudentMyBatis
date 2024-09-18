@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.indus.training.persist.dao.IStudentDao">
+
+    <!-- Insert a new Student object -->
+    <insert id="insertStudent" parameterType="com.indus.training.persist.entity.Student">
+        INSERT INTO student (ID, firstName, lastName) 
+        VALUES (#{studentId}, #{firstName}, #{lastName});
+    </insert>
+
+    <!-- Fetch a Student object by its ID -->
+    <select id="selectStudentById" parameterType="int" resultType="com.indus.training.persist.entity.Student">
+        SELECT ID as studentId, firstName, lastName 
+        FROM student 
+        WHERE ID = #{stuId};
+    </select>
+
+    <!-- Delete a Student object by its ID -->
+    <delete id="deleteStudent" parameterType="int">
+        DELETE FROM student 
+        WHERE ID = #{stuId};
+    </delete>
+
+    <!-- Update the first name of an existing Student -->
+    <update id="updateStudentFirstName" parameterType="map">
+        UPDATE student 
+        SET firstName = #{updFirstName} 
+        WHERE ID = #{id};
+    </update>
+
+    <!-- Update the last name of an existing Student -->
+    <update id="updateStudentLastName" parameterType="map">
+        UPDATE student 
+        SET lastName = #{updLastName} 
+        WHERE ID = #{id};
+    </update>
+
+</mapper>
